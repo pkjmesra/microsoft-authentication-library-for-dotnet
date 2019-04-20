@@ -5,6 +5,8 @@ using System;
 using System.Globalization;
 using System.Linq;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace XForms
@@ -75,7 +77,8 @@ namespace XForms
 
         private void OnPickerSelectedIndexChanged(object sender, EventArgs args)
         {
-            var selectedB2CAuthority = (Picker)sender;
+            var selectedB2CAuthority = (Xamarin.Forms.Picker)sender;
+            selectedB2CAuthority.On<iOS>().SetUpdateMode(UpdateMode.WhenFinished);
             int selectedIndex = selectedB2CAuthority.SelectedIndex;
 
             switch (selectedIndex)

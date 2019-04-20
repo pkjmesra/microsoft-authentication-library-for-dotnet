@@ -242,9 +242,6 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             // Select authority
             controller.Tap(CoreUiTestConstants.AuthorityPickerId);
             controller.Tap(authority);
-#if iOS
-                controller.Tap("Done");
-#endif
         }
 
         public void PerformB2CLocalAccountSignInFlow(ITestController controller, LabUser user, UserInformationFieldIds userInformationFieldIds)
@@ -294,16 +291,10 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             if (IsB2CLoginAuthority)
             {
                 SetB2CInputDataForB2CloginAuthority(controller);
-#if iOS
-                controller.Tap("Done");
-#endif
             }
             else
             {
                 SetB2CInputData(controller);
-#if iOS
-                controller.Tap("Done");
-#endif
             }
         }
 
