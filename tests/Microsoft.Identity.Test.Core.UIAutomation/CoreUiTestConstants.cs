@@ -74,6 +74,7 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         public const string B2CGoogleNextId = "next";
         public const string B2CGoogleSignInId = "signIn";
         public const string B2CEditProfileContinueId = "continue";
+        public const string B2CLocalAccountEditProfileId = "SignInWithLogonNameExchange";
 
         // these should match the product enum values
         public const string UiBehaviorConsent = "consent";

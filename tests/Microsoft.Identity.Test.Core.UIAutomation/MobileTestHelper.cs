@@ -18,7 +18,7 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         private string _acquirePageId;
         private string _cachePageId;
         private string _settingsPageId;
-
+        public bool IsB2CLoginAuthority { get; set; }
         public MobileTestHelper(Xamarin.UITest.Platform platform)
         {
             SetPageNavigationIds(platform);
@@ -138,24 +138,24 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         /// <summary>
         /// Runs through the B2C acquire token flow with local account
         /// </summary>
-        public void B2CLocalAccountAcquireTokenInteractiveTestHelper(ITestController controller, LabResponse labResponse, bool isB2CLoginAuthority)
+        public void B2CLocalAccountAcquireTokenInteractiveTestHelper(ITestController controller, LabResponse labResponse)
         {
-            PerformB2CSignInFlow(controller, labResponse.User, B2CIdentityProvider.Local, isB2CLoginAuthority);
+            PerformB2CSignInFlow(controller, labResponse.User, B2CIdentityProvider.Local);
         }
 
         /// <summary>
         /// Runs through the B2C acquire token flow with Facebook Provider
         /// </summary>
-        public void B2CFacebookAcquireTokenInteractiveTestHelper(ITestController controller, LabResponse labResponse, bool isB2CLoginAuthority)
+        public void B2CFacebookAcquireTokenInteractiveTestHelper(ITestController controller, LabResponse labResponse)
         {
-            PerformB2CSignInFlow(controller, labResponse.User, B2CIdentityProvider.Facebook, isB2CLoginAuthority);
+            PerformB2CSignInFlow(controller, labResponse.User, B2CIdentityProvider.Facebook);
         }
 
         /// <summary>
-        /// Runs through the B2C acquire token flow with Facebook Provider
+        /// Runs through the B2C acquire token flow
         /// and Edit Policy authority
         /// </summary>
-        public void B2CFacebookEditPolicyAcquireTokenInteractiveTestHelper(ITestController controller)
+        public void B2CEditPolicyAcquireTokenInteractiveTestHelper(ITestController controller)
         {
             PerformB2CSignInEditProfileFlow(controller);
         }
@@ -163,34 +163,19 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         /// <summary>
         /// Runs through the B2C acquire token flow with Google Provider
         /// </summary>
-        public void B2CGoogleAcquireTokenInteractiveTestHelper(ITestController controller, LabResponse labResponse, bool isB2CLoginAuthority)
+        public void B2CGoogleAcquireTokenInteractiveTestHelper(ITestController controller, LabResponse labResponse)
         {
-            PerformB2CSignInFlow(controller, labResponse.User, B2CIdentityProvider.Google, isB2CLoginAuthority);
-        }
-
-        private void SetB2CAuthority(ITestController controller, bool isB2CLoginAuthority)
-        {
-            PrepareForAuthentication(controller);
-            controller.Tap(_settingsPageId);
-
-            if (isB2CLoginAuthority)
-            {
-                SetB2CInputDataForB2CloginAuthority(controller);
-            }
-            else
-            {
-                SetB2CInputData(controller);
-            }
+            PerformB2CSignInFlow(controller, labResponse.User, B2CIdentityProvider.Google);
         }
 
         /// <summary>
         /// Runs through the B2C acquire token silent flow with local account
         /// </summary>
         /// <param name="controller">The test framework that will execute the test interaction</param>
-        public void B2CLocalAccountAcquireTokenSilentTest(ITestController controller, LabResponse labResponse, bool isB2CLoginAuthority)
+        public void B2CLocalAccountAcquireTokenSilentTest(ITestController controller, LabResponse labResponse)
         {
             //acquire token for 1st resource
-            B2CLocalAccountAcquireTokenInteractiveTestHelper(controller, labResponse, isB2CLoginAuthority);
+            B2CLocalAccountAcquireTokenInteractiveTestHelper(controller, labResponse);
 
             B2CSilentFlowHelper(controller);
         }
@@ -199,10 +184,10 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         /// Runs through the B2C acquire token silent flow with Facebook identity provider
         /// </summary>
         /// <param name="controller">The test framework that will execute the test interaction</param>
-        public void B2CFacebookAcquireTokenSilentTest(ITestController controller, LabResponse labResponse, bool isB2CLoginAuthority)
+        public void B2CFacebookAcquireTokenSilentTest(ITestController controller, LabResponse labResponse)
         {
             //acquire token for 1st resource
-            B2CFacebookAcquireTokenInteractiveTestHelper(controller, labResponse, isB2CLoginAuthority);
+            B2CFacebookAcquireTokenInteractiveTestHelper(controller, labResponse);
 
             B2CSilentFlowHelper(controller);
         }
@@ -211,10 +196,10 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         /// Runs through the B2C acquire token silent flow with Google identity provider
         /// </summary>
         /// <param name="controller">The test framework that will execute the test interaction</param>
-        public void B2CGoogleAcquireTokenSilentTest(ITestController controller, LabResponse labResponse, bool isB2CLoginAuthority)
+        public void B2CGoogleAcquireTokenSilentTest(ITestController controller, LabResponse labResponse)
         {
             //acquire token for 1st resource
-            B2CGoogleAcquireTokenInteractiveTestHelper(controller, labResponse, isB2CLoginAuthority);
+            B2CGoogleAcquireTokenInteractiveTestHelper(controller, labResponse);
 
             B2CSilentFlowHelper(controller);
         }
@@ -298,9 +283,30 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             controller.Tap(userInformationFieldIds.PasswordSignInButtonId, XamarinSelector.ByHtmlIdAttribute);
         }
 
-        public void PerformB2CSignInFlow(ITestController controller, LabUser user, B2CIdentityProvider b2CIdentityProvider, bool isB2CLoginAuthority)
+        private void SetB2CAuthority(ITestController controller)
         {
-            SetB2CAuthority(controller, true);
+            PrepareForAuthentication(controller);
+            controller.Tap(_settingsPageId);
+
+            if (IsB2CLoginAuthority)
+            {
+                SetB2CInputDataForB2CloginAuthority(controller);
+#if iOS
+                controller.Tap("Done");
+#endif
+            }
+            else
+            {
+                SetB2CInputData(controller);
+#if iOS
+                controller.Tap("Done");
+#endif
+            }
+        }
+
+        public void PerformB2CSignInFlow(ITestController controller, LabUser user, B2CIdentityProvider b2CIdentityProvider)
+        {
+            SetB2CAuthority(controller);
 
             UserInformationFieldIds userInformationFieldIds = DetermineUserInformationFieldIds(user);
 
@@ -327,9 +333,9 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             VerifyResult(controller);
         }
 
-        public void PerformB2CSelectProviderOnlyFlow(ITestController controller, LabUser user, B2CIdentityProvider b2CIdentityProvider, bool isB2CLoginAuthority)
+        public void PerformB2CSelectProviderOnlyFlow(ITestController controller, B2CIdentityProvider b2CIdentityProvider)
         {
-            SetB2CAuthority(controller, isB2CLoginAuthority);
+            SetB2CAuthority(controller);
 
             controller.Tap(_acquirePageId);
 
@@ -340,6 +346,9 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             {
             case B2CIdentityProvider.Facebook:
                 controller.Tap(CoreUiTestConstants.FacebookAccountId, XamarinSelector.ByHtmlIdAttribute);
+                break;
+            case B2CIdentityProvider.Local:
+                controller.Tap(CoreUiTestConstants.B2CLocalAccountEditProfileId, XamarinSelector.ByHtmlIdAttribute);
                 break;
             default:
                 throw new InvalidOperationException("B2CIdentityProvider unknown");
