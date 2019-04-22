@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Identity.Test.LabInfrastructure;
 using NUnit.Framework;
+using Xamarin.Forms;
 using Xamarin.UITest.Queries;
 
 namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
@@ -240,15 +241,19 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         public void SetAuthority(ITestController controller, string authority)
         {
             // Select authority
-            controller.Application.Tap(x => x.Id(CoreUiTestConstants.AuthorityPickerId));
-            Console.WriteLine("open the UI picker");
-#if iOS
-            Console.WriteLine("On iOS device, select the {0} authority", authority);
-            controller.Application.WaitForElement(x => x.Class("UIPickerView"));
-            controller.Application.Query(x => x.Class("UIPickerView").Invoke("selectRow", authority, "inComponent", 0, "animated", true));
-#endif
-            Console.WriteLine("found the authority");
-            controller.Application.Tap(x => x.Marked(authority));
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                controller.Application.Tap(x => x.Id(CoreUiTestConstants.AuthorityPickerId));
+                Console.WriteLine("open the UI picker");
+                Console.WriteLine("On iOS device, select the {0} authority", authority);
+                controller.Application.WaitForElement(x => x.Class("UIPickerView"));
+                controller.Application.Query(x => x.Class("UIPickerView").Invoke("selectRow", authority, "inComponent", 0, "animated", true));
+            }
+            else
+            {
+                controller.Application.Tap(x => x.Marked(CoreUiTestConstants.AuthorityPickerId));
+                controller.Application.Tap(x => x.Marked(authority));
+            }
         }
 
         public void PerformB2CLocalAccountSignInFlow(ITestController controller, LabUser user, UserInformationFieldIds userInformationFieldIds)
