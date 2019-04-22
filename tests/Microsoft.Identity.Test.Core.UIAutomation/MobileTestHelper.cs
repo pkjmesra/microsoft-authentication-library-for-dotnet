@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Identity.Test.LabInfrastructure;
 using NUnit.Framework;
-using Xamarin.Forms;
 using Xamarin.UITest.Queries;
 
 namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
@@ -241,7 +240,7 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         public void SetAuthority(ITestController controller, string authority)
         {
             // Select authority
-            if (Device.RuntimePlatform == Device.iOS)
+            if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS)
             {
                 controller.Application.Tap(x => x.Id(CoreUiTestConstants.AuthorityPickerId));
                 Console.WriteLine("open the UI picker");
