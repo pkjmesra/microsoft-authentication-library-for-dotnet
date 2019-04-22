@@ -28,6 +28,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\devapps\XForms\XForms.Android\obj\Debug\90\SignedAssemblies\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.UITest" Version="2.2.7" />
