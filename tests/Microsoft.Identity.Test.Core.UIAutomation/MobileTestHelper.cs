@@ -246,8 +246,9 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
                 controller.Application.Tap(x => x.Id(CoreUiTestConstants.AuthorityPickerId));
                 Console.WriteLine("open the UI picker");
                 Console.WriteLine("On iOS device, select the {0} authority", authority);
-                controller.Application.WaitForElement(x => x.Class(CoreUiTestConstants.AuthorityPickerId));
-                controller.Application.Query(x => x.Class(CoreUiTestConstants.AuthorityPickerId).Invoke("selectRow", authority, "inComponent", 1, "animated", true));
+                controller.Application.Tap(x => x.Marked(authority));
+                controller.Application.WaitForElement(x => x.Class("Picker"));
+                controller.Application.Query(x => x.Class("Picker").Invoke("selectRow", authority, "inComponent", 1, "animated", true));
             }
             else
             {
