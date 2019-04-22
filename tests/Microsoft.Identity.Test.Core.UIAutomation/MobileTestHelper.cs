@@ -240,8 +240,8 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         public void SetAuthority(ITestController controller, string authority)
         {
             // Select authority
-            controller.Tap(CoreUiTestConstants.AuthorityPickerId);
-            controller.Tap(authority);
+            controller.Application.Tap(x => x.Marked(CoreUiTestConstants.AuthorityPickerId));
+            controller.Application.Tap(x => x.Marked(authority));
         }
 
         public void PerformB2CLocalAccountSignInFlow(ITestController controller, LabUser user, UserInformationFieldIds userInformationFieldIds)
