@@ -258,13 +258,18 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
 
         public void PerformB2CLocalAccountSignInFlow(ITestController controller, LabUser user, UserInformationFieldIds userInformationFieldIds)
         {
-            controller.EnterText(CoreUiTestConstants.WebUpnB2CLocalInputId, 20, user.Upn, XamarinSelector.ByHtmlIdAttribute);
-            controller.Tap(userInformationFieldIds.PasswordSignInButtonId, XamarinSelector.ByHtmlIdAttribute);
-            controller.EnterText(userInformationFieldIds.PasswordInputId, user.GetOrFetchPassword(), XamarinSelector.ByHtmlIdAttribute);
-
+            controller.EnterText(CoreUiTestConstants.WebUpnB2CLocalInputId, 20, user.Upn, XamarinSelector.ByHtmlIdAttribute);        
+           
             if (IsIosDevice)
             {
+                controller.Application.EnterText(x => x.Marked(userInformationFieldIds.PasswordInputId), user.GetOrFetchPassword());
+                controller.Application.Tap(x => x.Marked(userInformationFieldIds.PasswordSignInButtonId));
                 controller.Application.Tap(x => x.Marked("Done"));
+            }
+            else
+            {
+                controller.EnterText(userInformationFieldIds.PasswordInputId, user.GetOrFetchPassword(), XamarinSelector.ByHtmlIdAttribute);
+                controller.Tap(userInformationFieldIds.PasswordSignInButtonId, XamarinSelector.ByHtmlIdAttribute);
             }
         }
 
