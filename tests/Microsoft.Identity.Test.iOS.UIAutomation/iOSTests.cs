@@ -210,7 +210,6 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// and subsequent silent call
         /// </summary>
         [Test]
-        [Ignore("Fails to find B2C elements on the app during setup.")]
         public void B2CLocalAccountAcquireTokenTest()
         {
             _mobileTestHelper.IsB2CLoginAuthority = true;

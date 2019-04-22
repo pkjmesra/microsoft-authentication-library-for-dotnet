@@ -21,7 +21,7 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         {
             get
             {
-                if (String.IsNullOrWhiteSpace(_passwordInputId))
+                if (string.IsNullOrWhiteSpace(_passwordInputId))
                 {
                     DetermineFieldIds();
                 }
@@ -33,7 +33,7 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         {
             get
             {
-                if (String.IsNullOrWhiteSpace(_passwordSignInButtonId))
+                if (string.IsNullOrWhiteSpace(_passwordSignInButtonId))
                 {
                     DetermineFieldIds();
                 }
