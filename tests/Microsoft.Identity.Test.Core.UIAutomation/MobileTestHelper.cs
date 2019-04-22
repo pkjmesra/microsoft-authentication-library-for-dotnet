@@ -262,9 +262,8 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
            
             if (IsIosDevice)
             {
-                controller.Application.DismissKeyboard();
-                controller.Application.EnterText(x => x.Marked(userInformationFieldIds.PasswordInputId), user.GetOrFetchPassword());
-                controller.Application.DismissKeyboard();
+                controller.EnterText(userInformationFieldIds.PasswordInputId, user.GetOrFetchPassword(), XamarinSelector.ByAutomationId);
+                //controller.Application.EnterText(x => x.Marked(userInformationFieldIds.PasswordInputId), user.GetOrFetchPassword());
                 controller.Application.Tap(x => x.Marked(userInformationFieldIds.PasswordSignInButtonId));
                 controller.Application.Tap(x => x.Marked("Done"));
             }
