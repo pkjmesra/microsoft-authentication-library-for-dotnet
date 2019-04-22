@@ -19,6 +19,7 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         private string _cachePageId;
         private string _settingsPageId;
         public bool IsB2CLoginAuthority { get; set; }
+        public bool IsIosDevice { get; set; }
         public MobileTestHelper(Xamarin.UITest.Platform platform)
         {
             SetPageNavigationIds(platform);
@@ -240,7 +241,7 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         public void SetAuthority(ITestController controller, string authority)
         {
             // Select authority
-            if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS)
+            if (IsIosDevice)
             {
                 controller.Application.Tap(x => x.Id(CoreUiTestConstants.AuthorityPickerId));
                 Console.WriteLine("open the UI picker");
