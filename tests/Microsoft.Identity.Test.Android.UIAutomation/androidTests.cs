@@ -224,8 +224,6 @@ namespace Microsoft.Identity.Test.UIAutomation
         [Test]
         public void B2CLocalAccountEditProfileAcquireTokenTest()
         {
-            //_mobileTestHelper.IsB2CLoginAuthority = true;
-            //_mobileTestHelper.B2CLocalAccountAcquireTokenSilentTest(_xamarinController, LabUserHelper.GetB2CLocalAccount());
             _mobileTestHelper.B2CEditPolicyAcquireTokenInteractiveTestHelper(_xamarinController);
         }
 

@@ -78,7 +78,7 @@ namespace XForms
         private void OnPickerSelectedIndexChanged(object sender, EventArgs args)
         {
             var selectedB2CAuthority = (Xamarin.Forms.Picker)sender;
-            selectedB2CAuthority.On<iOS>().SetUpdateMode(UpdateMode.WhenFinished);
+            selectedB2CAuthority.On<iOS>().SetUpdateMode(UpdateMode.Immediately);
             int selectedIndex = selectedB2CAuthority.SelectedIndex;
 
             switch (selectedIndex)
