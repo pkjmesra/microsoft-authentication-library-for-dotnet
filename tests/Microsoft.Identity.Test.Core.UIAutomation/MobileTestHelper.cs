@@ -301,9 +301,9 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
 
         public void PerformB2CMSASignInFlow(ITestController controller, LabUser user, UserInformationFieldIds userInformationFieldIds)
         {
-            controller.WaitForWebElementByCssId(CoreUiTestConstants.FacebookAccountId);
+            controller.WaitForWebElementByCssId(CoreUiTestConstants.MSAAccountId);
 
-            controller.Tap(CoreUiTestConstants.FacebookAccountId, XamarinSelector.ByHtmlIdAttribute);
+            controller.Tap(CoreUiTestConstants.MSAAccountId, XamarinSelector.ByHtmlIdAttribute);
 
             controller.WaitForWebElementByCssId(CoreUiTestConstants.MSAUsernameSubmitId);
 

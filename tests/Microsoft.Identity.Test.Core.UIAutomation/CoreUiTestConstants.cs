@@ -71,6 +71,7 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         public const string MSAUsernameSubmitId = "i0116";
         public const string MSAPasswordSubmitId = "i0118";
         public const string MSANextButtonId = "idSIButton9";
+        public const string MSAAccountId = "MicrosoftAccountExchange";
         public const string GoogleAccountId = "GoogleExchange";
         public const string WebUpnB2CGoogleInputId = "Email";
         public const string B2CWebPasswordGoogleId = "Passwd";
