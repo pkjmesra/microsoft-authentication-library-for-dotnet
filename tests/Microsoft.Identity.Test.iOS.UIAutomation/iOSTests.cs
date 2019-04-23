@@ -69,7 +69,8 @@ namespace Test.Microsoft.Identity.UIAutomation
                 //B2CFacebookMicrosoftAuthorityAcquireTokenTest,
                 //B2CGoogleB2CLoginAuthorityAcquireTokenTest,
                 //B2CGoogleMicrosoftAuthorityAcquireTokenTest,
-                B2CLocalAccountAcquireTokenTest,
+                //B2CLocalAccountAcquireTokenTest,
+                B2CMSAAquireTokenTest
                 //B2CFacebookEditPolicyAcquireTokenTest,
             };
 
@@ -227,6 +228,18 @@ namespace Test.Microsoft.Identity.UIAutomation
         public void B2CLocalAccountEditProfileAcquireTokenTest()
         {
             _mobileTestHelper.B2CEditPolicyAcquireTokenInteractiveTestHelper(_xamarinController);
+        }
+
+        /// B2C acquire token with MSA
+        /// b2clogin.com authority
+        /// and subsequent silent call
+        /// </summary>
+        [Test]
+        public void B2CMSAAquireTokenTest()
+        {
+            _mobileTestHelper.IsB2CLoginAuthority = true;
+            _mobileTestHelper.IsIosDevice = true;
+            _mobileTestHelper.B2CMSAAcquireTokenInteractiveTestHelper(_xamarinController, LabUserHelper.GetB2CMSAAccount()));
         }
 
         /// <summary>

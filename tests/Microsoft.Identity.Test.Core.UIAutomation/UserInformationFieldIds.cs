@@ -108,6 +108,10 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
                     _passwordInputId = CoreUiTestConstants.B2CWebPasswordGoogleId;
                     _passwordSignInButtonId = CoreUiTestConstants.B2CGoogleSignInId;
                     break;
+            case B2CIdentityProvider.MSA:
+                _passwordInputId = CoreUiTestConstants.MSAPasswordSubmitId;
+                _passwordSignInButtonId = CoreUiTestConstants.MSANextButtonId;
+                break;
             }
         }
     }

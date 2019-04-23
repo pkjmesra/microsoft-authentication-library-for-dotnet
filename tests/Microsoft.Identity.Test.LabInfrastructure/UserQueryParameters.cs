@@ -42,6 +42,12 @@ namespace Microsoft.Identity.Test.LabInfrastructure
             B2CIdentityProvider = LabInfrastructure.B2CIdentityProvider.Google
         };
 
+        public static UserQuery B2CMSAUserQuery => new UserQuery
+        {
+            UserType = LabInfrastructure.UserType.B2C,
+            B2CIdentityProvider = LabInfrastructure.B2CIdentityProvider.MSA
+        };
+
         // generated code, re-generate or update manually if you change the members of this class !
         #region Equals and GetHashCode
         public override bool Equals(object obj)

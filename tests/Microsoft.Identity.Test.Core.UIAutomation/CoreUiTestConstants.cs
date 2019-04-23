@@ -68,6 +68,9 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         public const string WebUpnB2CFacebookInputId = "m_login_email";
         public const string B2CWebPasswordFacebookId = "m_login_password";
         public const string B2CFacebookSubmitId = "u_0_5";
+        public const string MSAUsernameSubmitId = "i0116";
+        public const string MSAPasswordSubmitId = "i0118";
+        public const string MSANextButtonId = "idSIButton9";
         public const string GoogleAccountId = "GoogleExchange";
         public const string WebUpnB2CGoogleInputId = "Email";
         public const string B2CWebPasswordGoogleId = "Passwd";

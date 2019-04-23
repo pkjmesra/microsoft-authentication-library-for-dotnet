@@ -145,6 +145,14 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         }
 
         /// <summary>
+        /// Runs through the B2C acquire token flow with MSA
+        /// </summary>
+        public void B2CMSAAcquireTokenInteractiveTestHelper(ITestController controller, LabResponse labResponse)
+        {
+            PerformB2CSignInFlow(controller, labResponse.User, B2CIdentityProvider.MSA);
+        }
+
+        /// <summary>
         /// Runs through the B2C acquire token flow with Facebook Provider
         /// </summary>
         public void B2CFacebookAcquireTokenInteractiveTestHelper(ITestController controller, LabResponse labResponse)
@@ -291,6 +299,25 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             controller.Tap(userInformationFieldIds.PasswordSignInButtonId, XamarinSelector.ByHtmlIdAttribute);
         }
 
+        public void PerformB2CMSASignInFlow(ITestController controller, LabUser user, UserInformationFieldIds userInformationFieldIds)
+        {
+            controller.WaitForWebElementByCssId(CoreUiTestConstants.FacebookAccountId);
+
+            controller.Tap(CoreUiTestConstants.FacebookAccountId, XamarinSelector.ByHtmlIdAttribute);
+
+            controller.WaitForWebElementByCssId(CoreUiTestConstants.MSAUsernameSubmitId);
+
+            controller.EnterText(CoreUiTestConstants.MSAUsernameSubmitId, 20, user.Upn, XamarinSelector.ByHtmlIdAttribute);
+
+            controller.Tap(CoreUiTestConstants.MSANextButtonId, XamarinSelector.ByHtmlIdAttribute);
+
+            controller.EnterText(userInformationFieldIds.PasswordInputId, user.GetOrFetchPassword(), XamarinSelector.ByHtmlIdAttribute);
+
+            controller.WaitForWebElementByCssId(userInformationFieldIds.PasswordSignInButtonId);
+
+            controller.Tap(userInformationFieldIds.PasswordSignInButtonId, XamarinSelector.ByHtmlIdAttribute);
+        }
+
         public void PerformB2CGoogleProviderSignInFlow(ITestController controller, LabUser user, UserInformationFieldIds userInformationFieldIds)
         {
             controller.Tap(CoreUiTestConstants.GoogleAccountId, XamarinSelector.ByHtmlIdAttribute);
@@ -338,9 +365,11 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             case B2CIdentityProvider.Google:
                 PerformB2CGoogleProviderSignInFlow(controller, user, userInformationFieldIds);
                 break;
-
             case B2CIdentityProvider.Facebook:
                 PerformB2CFacebookProviderSignInFlow(controller, user, userInformationFieldIds);
+                break;
+            case B2CIdentityProvider.MSA:
+                PerformB2CMSASignInFlow(controller, user, userInformationFieldIds);
                 break;
             default:
                 throw new InvalidOperationException("B2CIdentityProvider unknown");

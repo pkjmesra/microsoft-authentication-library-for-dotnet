@@ -61,6 +61,10 @@ namespace Microsoft.Identity.Test.LabInfrastructure
             return GetLabUserData(UserQuery.B2CGoogleUserQuery);
         }
 
+        public static LabResponse GetB2CMSAAccount()
+        {
+            return GetLabUserData(UserQuery.B2CMSAUserQuery);
+        }
         public static LabResponse GetAdfsUser(FederationProvider federationProvider, bool federated = true)
         {
             var query = UserQuery.DefaultUserQuery;
