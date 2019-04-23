@@ -112,6 +112,11 @@ namespace Microsoft.Identity.Test.LabInfrastructure
                 queryDict.Add(LabApiConstants.B2CProvider, LabApiConstants.B2CGoogle);
             }
 
+            if(query.B2CIdentityProvider == B2CIdentityProvider.MSA)
+            {
+                queryDict.Add(LabApiConstants.B2CProvider, LabApiConstants.B2CMSA);
+            }
+
             uriBuilder.Query = string.Join("&", queryDict.Select(x => x.Key + "=" + x.Value.ToString()));
             string result = _httpClient.GetStringAsync(uriBuilder.ToString()).GetAwaiter().GetResult();
 

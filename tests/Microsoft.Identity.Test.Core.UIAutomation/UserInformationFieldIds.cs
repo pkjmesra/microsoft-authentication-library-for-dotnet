@@ -96,18 +96,18 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         {
             switch (_user.B2CIdentityProvider)
             {
-                case B2CIdentityProvider.Local:
-                    _passwordInputId = CoreUiTestConstants.B2CWebPasswordId;
-                    _passwordSignInButtonId = CoreUiTestConstants.B2CWebSubmitId;
-                    break;
-                case B2CIdentityProvider.Facebook:
-                    _passwordInputId = CoreUiTestConstants.B2CWebPasswordFacebookId;
-                    _passwordSignInButtonId = CoreUiTestConstants.B2CFacebookSubmitId;
-                    break;
-                case B2CIdentityProvider.Google:
-                    _passwordInputId = CoreUiTestConstants.B2CWebPasswordGoogleId;
-                    _passwordSignInButtonId = CoreUiTestConstants.B2CGoogleSignInId;
-                    break;
+            case B2CIdentityProvider.Local:
+                _passwordInputId = CoreUiTestConstants.B2CWebPasswordId;
+                _passwordSignInButtonId = CoreUiTestConstants.B2CWebSubmitId;
+                break;
+            case B2CIdentityProvider.Facebook:
+                _passwordInputId = CoreUiTestConstants.B2CWebPasswordFacebookId;
+                _passwordSignInButtonId = CoreUiTestConstants.B2CFacebookSubmitId;
+                break;
+            case B2CIdentityProvider.Google:
+                _passwordInputId = CoreUiTestConstants.B2CWebPasswordGoogleId;
+                _passwordSignInButtonId = CoreUiTestConstants.B2CGoogleSignInId;
+                break;
             case B2CIdentityProvider.MSA:
                 _passwordInputId = CoreUiTestConstants.MSAPasswordSubmitId;
                 _passwordSignInButtonId = CoreUiTestConstants.MSANextButtonId;
