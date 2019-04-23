@@ -265,10 +265,6 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
                 controller.Tap(userInformationFieldIds.PasswordInputId, XamarinSelector.ByHtmlIdAttribute);
                 controller.EnterText(userInformationFieldIds.PasswordInputId, user.GetOrFetchPassword(), XamarinSelector.ByHtmlIdAttribute);
                 controller.Tap(userInformationFieldIds.PasswordSignInButtonId, XamarinSelector.ByHtmlIdAttribute);
-                //controller.Application.Tap(x => x.Marked(userInformationFieldIds.PasswordInputId));
-                //controller.Application.WaitForElement(x => x.Marked(userInformationFieldIds.PasswordInputId));
-                //controller.Application.EnterText(x => x.Marked(userInformationFieldIds.PasswordInputId), user.GetOrFetchPassword());
-                //controller.Application.Tap(x => x.Marked(userInformationFieldIds.PasswordSignInButtonId));
                 controller.Application.Tap(x => x.Marked("Done"));
             }
             else
