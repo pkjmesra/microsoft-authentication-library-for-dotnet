@@ -239,7 +239,7 @@ namespace Test.Microsoft.Identity.UIAutomation
         {
             _mobileTestHelper.IsB2CLoginAuthority = true;
             _mobileTestHelper.IsIosDevice = true;
-            _mobileTestHelper.B2CMSAAcquireTokenInteractiveTestHelper(_xamarinController, LabUserHelper.GetB2CMSAAccount()));
+            _mobileTestHelper.B2CMSAAcquireTokenInteractiveTestHelper(_xamarinController, LabUserHelper.GetB2CMSAAccount());
         }
 
         /// <summary>
