@@ -313,9 +313,9 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
 
             controller.EnterText(userInformationFieldIds.PasswordInputId, user.GetOrFetchPassword(), XamarinSelector.ByHtmlIdAttribute);
 
-            controller.WaitForWebElementByCssId(userInformationFieldIds.PasswordSignInButtonId);
+            controller.WaitForWebElementByCssId(CoreUiTestConstants.MSAPasswordSubmitId);
 
-            controller.Tap(userInformationFieldIds.PasswordSignInButtonId, XamarinSelector.ByHtmlIdAttribute);
+            controller.Tap(CoreUiTestConstants.MSAPasswordSubmitId, XamarinSelector.ByHtmlIdAttribute);
         }
 
         public void PerformB2CGoogleProviderSignInFlow(ITestController controller, LabUser user, UserInformationFieldIds userInformationFieldIds)
