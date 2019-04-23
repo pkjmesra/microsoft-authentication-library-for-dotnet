@@ -316,6 +316,8 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             controller.WaitForWebElementByCssId(CoreUiTestConstants.MSAPasswordSubmitId);
 
             controller.Tap(CoreUiTestConstants.MSAPasswordSubmitId, XamarinSelector.ByHtmlIdAttribute);
+
+            controller.Tap(CoreUiTestConstants.MSANextButtonId, XamarinSelector.ByHtmlIdAttribute);
         }
 
         public void PerformB2CGoogleProviderSignInFlow(ITestController controller, LabUser user, UserInformationFieldIds userInformationFieldIds)
