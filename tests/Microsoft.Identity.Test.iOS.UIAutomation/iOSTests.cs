@@ -55,34 +55,35 @@ namespace Test.Microsoft.Identity.UIAutomation
         [Category("FastRun")]
         public async Task RunAllTestsAsync()
         {
-            var tests = new List<Func<Task>>()
+            var tests = new List<Action>()
             {
-                AcquireTokenTestAsync,
-                //AcquireTokenSilentTest,
-                AcquireTokenADFSV3InteractiveFederatedTestAsync,
-                AcquireTokenADFSV3InteractiveNonFederatedTestAsync,
-                AcquireTokenADFSV4InteractiveFederatedTestAsync,
-                AcquireTokenADFSV4InteractiveNonFederatedTestAsync,
-                AcquireTokenADFSV2019InteractiveFederatedTestAsync,
-                AcquireTokenADFSV2019InteractiveNonFederatedTestAsync,
+                AcquireTokenTest,
+                AcquireTokenSilentTest,
+                //AcquireTokenADFSV3InteractiveFederatedTestAsync,
+                //AcquireTokenADFSV3InteractiveNonFederatedTestAsync,
+                //AcquireTokenADFSV4InteractiveFederatedTestAsync,
+                //AcquireTokenADFSV4InteractiveNonFederatedTestAsync,
+                //AcquireTokenADFSV2019InteractiveFederatedTestAsync,
+                //AcquireTokenADFSV2019InteractiveNonFederatedTestAsync,
 
                 //B2CFacebookB2CLoginAuthorityAcquireTokenTest,
                 //B2CFacebookMicrosoftAuthorityAcquireTokenTest,
                 //B2CGoogleB2CLoginAuthorityAcquireTokenTest,
                 //B2CGoogleMicrosoftAuthorityAcquireTokenTest,
-                //B2CLocalAccountAcquireTokenTest,
+                //B2CLocalAccountAcquireTokenTestAsync,
                 //B2CFacebookEditPolicyAcquireTokenTest,
+                B2CROPCLocalAccountAcquireTokenTest
             };
 
             var hasFailed = false;
             var stringBuilderMessage = new StringBuilder();
 
-            foreach (Func<Task> test in tests)
+            foreach (Action test in tests)
             {
                 try
                 {
                     LogMessage($"Running test: {test.Method.Name}", stringBuilderMessage);
-                    await test().ConfigureAwait(false);
+                    test();
                 }
                 catch (Exception ex)
                 {
@@ -108,18 +109,18 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// Runs through the standard acquire token flow, using the default app configured UiBehavior = Login
         /// </summary>
         [Test]
-        public async Task AcquireTokenTestAsync()
+        public void AcquireTokenTest()
         {
-            _mobileTestHelper.AcquireTokenInteractiveTestHelper(_xamarinController, await LabUserHelper.GetDefaultUserAsync().ConfigureAwait(false));
+            _mobileTestHelper.AcquireTokenInteractiveTestHelper(_xamarinController, LabUserHelper.GetDefaultUserAsync().GetAwaiter().GetResult());
         }
 
         /// <summary>
         /// Runs through the standard acquire token silent flow
         /// </summary>
         [Test]
-        public async Task AcquireTokenSilentTestAsync()
+        public void AcquireTokenSilentTest()
         {
-            _mobileTestHelper.AcquireTokenSilentTestHelper(_xamarinController, await LabUserHelper.GetDefaultUserAsync().ConfigureAwait(false));
+            _mobileTestHelper.AcquireTokenSilentTestHelper(_xamarinController, LabUserHelper.GetDefaultUserAsync().GetAwaiter().GetResult());
         }
 
         /// <summary>
@@ -206,10 +207,21 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// and subsequent silent call
         /// </summary>
         [Test]
-        [Ignore("Fails to find B2C elements on the app during setup.")]
         public async Task B2CLocalAccountAcquireTokenTestAsync()
         {
+            _xamarinController.Tap("Done");
             _mobileTestHelper.B2CLocalAccountAcquireTokenSilentTest(_xamarinController, await LabUserHelper.GetB2CLocalAccountAsync().ConfigureAwait(false), true);
+        }
+
+        /// <summary>
+        /// B2C ROPC acquire token with local account
+        /// b2clogin.com authority
+        /// </summary>
+        [Test]
+        public void B2CROPCLocalAccountAcquireTokenTest()
+        {
+            _xamarinController.Tap("Done");
+            _mobileTestHelper.B2CAcquireTokenROPCTest(_xamarinController, LabUserHelper.GetB2CLocalAccountAsync().GetAwaiter().GetResult());
         }
 
         /// <summary>

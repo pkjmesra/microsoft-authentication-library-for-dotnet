@@ -75,7 +75,9 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             VerifyResult(controller);
 
             //acquire token for 2nd resource with refresh token
-            SetInputData(controller, labResponse.AppId, CoreUiTestConstants.DefaultScope, CoreUiTestConstants.UiBehaviorLogin);
+            // SetInputData(controller, labResponse.AppId, CoreUiTestConstants.DefaultScope, CoreUiTestConstants.UiBehaviorLogin);
+            controller.Tap(CoreUiTestConstants.SelectUser, XamarinSelector.ByAutomationId);
+            controller.Tap(labResponse.User.Upn);
             controller.Tap(CoreUiTestConstants.AcquireTokenSilentButtonId);
             VerifyResult(controller);
         }
@@ -282,10 +284,11 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             // Select authority
             controller.Tap(CoreUiTestConstants.AuthorityPickerId);
             controller.Tap(authority);
-        }
+            controller.Tap("Done");
+}
 
         public void PerformB2CLocalAccountSignInFlow(ITestController controller, LabUser user, UserInformationFieldIds userInformationFieldIds)
-        {
+        {  
             controller.EnterText(CoreUiTestConstants.WebUpnB2CLocalInputId, 20, user.Upn, XamarinSelector.ByHtmlIdAttribute);
 
             controller.EnterText(userInformationFieldIds.GetPasswordInputId(true), user.GetOrFetchPassword(), XamarinSelector.ByHtmlIdAttribute);
