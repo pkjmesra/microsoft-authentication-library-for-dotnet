@@ -34,7 +34,7 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// <param name="platform">The platform where the tests will be performed</param>
         public IOSMsalTests(Platform platform)
         {
-            this._platform = platform;
+            _platform = platform;
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// </summary>
         [Test]
         [Category("FastRun")]
-        public async Task RunAllTestsAsync()
+        public void RunAllTests()
         {
             var tests = new List<Action>()
             {

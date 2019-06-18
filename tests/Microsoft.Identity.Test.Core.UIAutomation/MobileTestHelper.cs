@@ -134,6 +134,9 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             // Enter Prompt Behavior
             controller.Tap(CoreUiTestConstants.UiBehaviorPickerId);
             controller.Tap(promptBehavior);
+#if iOS
+            controller.Tap("Done");
+#endif 
             controller.Tap(_acquirePageId);
         }
 
