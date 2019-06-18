@@ -59,18 +59,18 @@ namespace Test.Microsoft.Identity.UIAutomation
             {
                 AcquireTokenTest,
                 AcquireTokenSilentTest,
-                //AcquireTokenADFSV3InteractiveFederatedTestAsync,
-                //AcquireTokenADFSV3InteractiveNonFederatedTestAsync,
-                //AcquireTokenADFSV4InteractiveFederatedTestAsync,
-                //AcquireTokenADFSV4InteractiveNonFederatedTestAsync,
-                //AcquireTokenADFSV2019InteractiveFederatedTestAsync,
-                //AcquireTokenADFSV2019InteractiveNonFederatedTestAsync,
+                AcquireTokenADFSV3InteractiveFederatedTest,
+                AcquireTokenADFSV3InteractiveNonFederatedTest,
+                AcquireTokenADFSV4InteractiveFederatedTest,
+                AcquireTokenADFSV4InteractiveNonFederatedTest,
+                AcquireTokenADFSV2019InteractiveFederatedTest,
+                AcquireTokenADFSV2019InteractiveNonFederatedTest,
 
                 //B2CFacebookB2CLoginAuthorityAcquireTokenTest,
                 //B2CFacebookMicrosoftAuthorityAcquireTokenTest,
                 //B2CGoogleB2CLoginAuthorityAcquireTokenTest,
                 //B2CGoogleMicrosoftAuthorityAcquireTokenTest,
-                //B2CLocalAccountAcquireTokenTestAsync,
+                //B2CLocalAccountAcquireTokenTest,
                 //B2CFacebookEditPolicyAcquireTokenTest,
                 B2CROPCLocalAccountAcquireTokenTest
             };
@@ -128,9 +128,9 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// </summary>
         [Test]
         [Ignore("Current web element search implementation is unable to properly wait for select account elements on login page. Will be addressed in future updates.")]
-        public async Task PromptBehaviorConsentSelectAccountAsync()
+        public void PromptBehaviorConsentSelectAccount()
         {
-            var labResponse = await LabUserHelper.GetDefaultUserAsync().ConfigureAwait(false);
+            var labResponse = LabUserHelper.GetDefaultUserAsync().GetAwaiter().GetResult();
 
             _mobileTestHelper.PromptBehaviorTestHelperWithConsent(_xamarinController, labResponse);
         }
@@ -142,9 +142,9 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// </summary>
         [Test]
         [Ignore("Facebook updated to Graph v3 and app center tests are failing. Ignoring for the moment.")]
-        public async Task B2CFacebookB2CLoginAuthorityAcquireTokenTestAsync()
+        public void B2CFacebookB2CLoginAuthorityAcquireTokenTest()
         {
-            _mobileTestHelper.B2CFacebookAcquireTokenSilentTest(_xamarinController, await LabUserHelper.GetB2CFacebookAccountAsync().ConfigureAwait(false), true);
+            _mobileTestHelper.B2CFacebookAcquireTokenSilentTest(_xamarinController, LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult(), true);
         }
 
         /// <summary>
@@ -154,9 +154,13 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// </summary>
         [Test]
         [Ignore("Facebook updated to Graph v3 and app center tests are failing. Ignoring for the moment.")]
-        public async Task B2CFacebookMicrosoftAuthorityAcquireTokenTestAsync()
+        public void B2CFacebookMicrosoftAuthorityAcquireTokenTest()
         {
-            _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(_xamarinController, (await LabUserHelper.GetB2CFacebookAccountAsync().ConfigureAwait(false)).User, B2CIdentityProvider.Facebook, false);
+            _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(
+                _xamarinController, 
+                LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult().User, 
+                B2CIdentityProvider.Facebook, 
+                false);
             _mobileTestHelper.B2CSilentFlowHelper(_xamarinController);
         }
 
@@ -168,9 +172,13 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// </summary>
         [Test]
         [Ignore("Facebook updated to Graph v3 and app center tests are failing. Ignoring for the moment.")]
-        public async Task B2CFacebookEditPolicyAcquireTokenTestAsync()
+        public void B2CFacebookEditPolicyAcquireTokenTes()
         {
-            _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(_xamarinController, (await LabUserHelper.GetB2CFacebookAccountAsync().ConfigureAwait(false)).User, B2CIdentityProvider.Facebook, true);
+            _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(
+                _xamarinController, 
+                LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult().User, 
+                B2CIdentityProvider.Facebook, 
+                true);
             _mobileTestHelper.B2CSilentFlowHelper(_xamarinController);
             _mobileTestHelper.B2CFacebookEditPolicyAcquireTokenInteractiveTestHelper(_xamarinController);
         }
@@ -184,9 +192,12 @@ namespace Test.Microsoft.Identity.UIAutomation
         [Ignore("Google Auth does not support embedded webview from b2clogin.com authority. " +
             "App Center cannot run system browser tests yet, so this test can only be run in " +
             "system browser locally.")]
-        public async Task B2CGoogleB2CLoginAuthorityAcquireTokenTestAsync()
+        public void B2CGoogleB2CLoginAuthorityAcquireTokenTest()
         {
-            _mobileTestHelper.B2CGoogleAcquireTokenSilentTest(_xamarinController, await LabUserHelper.GetB2CGoogleAccountAsync().ConfigureAwait(false), true);
+            _mobileTestHelper.B2CGoogleAcquireTokenSilentTest(
+                _xamarinController,
+                LabUserHelper.GetB2CGoogleAccountAsync().GetAwaiter().GetResult(),
+                true);
         }
 
         /// <summary>
@@ -196,9 +207,12 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// </summary>
         [Test]
         [Ignore("UI is different in AppCenter compared w/local.")]
-        public async Task B2CGoogleMicrosoftAuthorityAcquireTokenTestAsync()
+        public void B2CGoogleMicrosoftAuthorityAcquireTokenTest()
         {
-            _mobileTestHelper.B2CGoogleAcquireTokenSilentTest(_xamarinController, await LabUserHelper.GetB2CGoogleAccountAsync().ConfigureAwait(false), false);
+            _mobileTestHelper.B2CGoogleAcquireTokenSilentTest(
+                _xamarinController, 
+                LabUserHelper.GetB2CGoogleAccountAsync().GetAwaiter().GetResult(),
+                false);
         }
 
         /// <summary>
@@ -207,10 +221,14 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// and subsequent silent call
         /// </summary>
         [Test]
-        public async Task B2CLocalAccountAcquireTokenTestAsync()
+        [Ignore("UI element is different from Android")]
+        public void B2CLocalAccountAcquireTokenTest()
         {
             _xamarinController.Tap("Done");
-            _mobileTestHelper.B2CLocalAccountAcquireTokenSilentTest(_xamarinController, await LabUserHelper.GetB2CLocalAccountAsync().ConfigureAwait(false), true);
+            _mobileTestHelper.B2CLocalAccountAcquireTokenSilentTest(
+                _xamarinController,
+                LabUserHelper.GetB2CLocalAccountAsync().GetAwaiter().GetResult(),
+                true);
         }
 
         /// <summary>
@@ -221,65 +239,75 @@ namespace Test.Microsoft.Identity.UIAutomation
         public void B2CROPCLocalAccountAcquireTokenTest()
         {
             _xamarinController.Tap("Done");
-            _mobileTestHelper.B2CAcquireTokenROPCTest(_xamarinController, LabUserHelper.GetB2CLocalAccountAsync().GetAwaiter().GetResult());
+            _mobileTestHelper.B2CAcquireTokenROPCTest(
+                _xamarinController, 
+                LabUserHelper.GetB2CLocalAccountAsync().GetAwaiter().GetResult());
         }
 
         /// <summary>
         /// Runs through the standard acquire token ADFSV4 Federated flow
         /// </summary>
         [Test]
-        public async Task AcquireTokenADFSV4InteractiveFederatedTestAsync()
+        public void AcquireTokenADFSV4InteractiveFederatedTest()
         {
             _mobileTestHelper.AcquireTokenInteractiveTestHelper(
                 _xamarinController,
-                await LabUserHelper.GetAdfsUserAsync(FederationProvider.AdfsV4).ConfigureAwait(false));
+                LabUserHelper.GetAdfsUserAsync(FederationProvider.AdfsV4).GetAwaiter().GetResult());
         }
 
         /// <summary>
         /// Runs through the standard acquire token ADFSV2019 Federated flow
         /// </summary>
         [Test]
-        public async Task AcquireTokenADFSV2019InteractiveFederatedTestAsync()
+        public void AcquireTokenADFSV2019InteractiveFederatedTest()
         {
             _mobileTestHelper.AcquireTokenInteractiveTestHelper(
                 _xamarinController,
-                await LabUserHelper.GetAdfsUserAsync(FederationProvider.ADFSv2019).ConfigureAwait(false));
+                LabUserHelper.GetAdfsUserAsync(FederationProvider.ADFSv2019).GetAwaiter().GetResult());
         }
 
         /// <summary>
         /// Runs through the standard acquire token ADFSV3 Federated flow
         /// </summary>
         [Test]
-        public async Task AcquireTokenADFSV3InteractiveFederatedTestAsync()
+        public void AcquireTokenADFSV3InteractiveFederatedTest()
         {
-            _mobileTestHelper.AcquireTokenInteractiveTestHelper(_xamarinController, await LabUserHelper.GetAdfsUserAsync(FederationProvider.AdfsV3).ConfigureAwait(false));
+            _mobileTestHelper.AcquireTokenInteractiveTestHelper(
+                _xamarinController, 
+                LabUserHelper.GetAdfsUserAsync(FederationProvider.AdfsV3).GetAwaiter().GetResult());
         }
 
         /// <summary>
         /// Runs through the standard acquire token ADFSV4 Non-Federated flow
         /// </summary>
         [Test]
-        public async Task AcquireTokenADFSV4InteractiveNonFederatedTestAsync()
+        public void AcquireTokenADFSV4InteractiveNonFederatedTest()
         {
-            _mobileTestHelper.AcquireTokenInteractiveTestHelper(_xamarinController, await LabUserHelper.GetAdfsUserAsync(FederationProvider.AdfsV4, false).ConfigureAwait(false));
+            _mobileTestHelper.AcquireTokenInteractiveTestHelper(
+                _xamarinController,
+                LabUserHelper.GetAdfsUserAsync(FederationProvider.AdfsV4, false).GetAwaiter().GetResult());
         }
 
         /// <summary>
         /// Runs through the standard acquire token ADFSV2019 Non-Federated flow
         /// </summary>
         [Test]
-        public async Task AcquireTokenADFSV2019InteractiveNonFederatedTestAsync()
+        public void AcquireTokenADFSV2019InteractiveNonFederatedTest()
         {
-            _mobileTestHelper.AcquireTokenInteractiveTestHelper(_xamarinController, await LabUserHelper.GetAdfsUserAsync(FederationProvider.ADFSv2019, false).ConfigureAwait(false));
+            _mobileTestHelper.AcquireTokenInteractiveTestHelper(
+                _xamarinController, 
+                LabUserHelper.GetAdfsUserAsync(FederationProvider.ADFSv2019, false).GetAwaiter().GetResult());
         }
 
         /// <summary>
         /// Runs through the standard acquire token ADFSV3 Non-Federated flow
         /// </summary>
         [Test]
-        public async Task AcquireTokenADFSV3InteractiveNonFederatedTestAsync()
+        public void AcquireTokenADFSV3InteractiveNonFederatedTest()
         {
-            _mobileTestHelper.AcquireTokenInteractiveTestHelper(_xamarinController, await LabUserHelper.GetAdfsUserAsync(FederationProvider.AdfsV4, false).ConfigureAwait(false));
+            _mobileTestHelper.AcquireTokenInteractiveTestHelper(
+                _xamarinController,
+                LabUserHelper.GetAdfsUserAsync(FederationProvider.AdfsV4, false).GetAwaiter().GetResult());
         }
     }
 }
