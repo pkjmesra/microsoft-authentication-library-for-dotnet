@@ -66,10 +66,11 @@ namespace Test.Microsoft.Identity.UIAutomation
                 AcquireTokenADFSV2019InteractiveFederatedTest,
                 AcquireTokenADFSV2019InteractiveNonFederatedTest,
 
-                //B2CFacebookB2CLoginAuthorityAcquireTokenTest,
-                //B2CFacebookMicrosoftAuthorityAcquireTokenTest,
-                //B2CGoogleB2CLoginAuthorityAcquireTokenTest,
-                //B2CGoogleMicrosoftAuthorityAcquireTokenTest,
+                // Ignored tests
+                //B2CFacebookB2CLoginAcquireTokenTest,
+                //B2CFacebookMicrosoftLoginAcquireTokenTest,
+                //B2CGoogleB2CLoginAcquireTokenTest,
+                //B2CGoogleMicrosofLoginAcquireTokenTest,
                 //B2CLocalAccountAcquireTokenTest,
                 //B2CFacebookEditPolicyAcquireTokenTest,
                 B2CROPCLocalAccountAcquireTokenTest
@@ -141,10 +142,13 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// with subsequent silent call
         /// </summary>
         [Test]
-        [Ignore("Facebook updated to Graph v3 and app center tests are failing. Ignoring for the moment.")]
-        public void B2CFacebookB2CLoginAuthorityAcquireTokenTest()
+        [Ignore("Facebook does not allow automated tests accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
+        public void B2CFacebookB2CLoginAcquireTokenTest()
         {
-            _mobileTestHelper.B2CFacebookAcquireTokenSilentTest(_xamarinController, LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult(), true);
+            _mobileTestHelper.B2CFacebookAcquireTokenSilentTest(
+                _xamarinController, 
+                LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult(), 
+                true);
         }
 
         /// <summary>
@@ -153,8 +157,8 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// with subsequent silent call
         /// </summary>
         [Test]
-        [Ignore("Facebook updated to Graph v3 and app center tests are failing. Ignoring for the moment.")]
-        public void B2CFacebookMicrosoftAuthorityAcquireTokenTest()
+        [Ignore("Facebook does not allow automated tests accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
+        public void B2CFacebookMicrosoftLoginAcquireTokenTest()
         {
             _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(
                 _xamarinController, 
@@ -171,8 +175,8 @@ namespace Test.Microsoft.Identity.UIAutomation
         ///  UIBehavior none
         /// </summary>
         [Test]
-        [Ignore("Facebook updated to Graph v3 and app center tests are failing. Ignoring for the moment.")]
-        public void B2CFacebookEditPolicyAcquireTokenTes()
+        [Ignore("Facebook does not allow automated tests accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
+        public void B2CFacebookEditPolicyAcquireTokenTest()
         {
             _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(
                 _xamarinController, 
@@ -192,7 +196,7 @@ namespace Test.Microsoft.Identity.UIAutomation
         [Ignore("Google Auth does not support embedded webview from b2clogin.com authority. " +
             "App Center cannot run system browser tests yet, so this test can only be run in " +
             "system browser locally.")]
-        public void B2CGoogleB2CLoginAuthorityAcquireTokenTest()
+        public void B2CGoogleB2CLoginAcquireTokenTest()
         {
             _mobileTestHelper.B2CGoogleAcquireTokenSilentTest(
                 _xamarinController,
@@ -206,8 +210,10 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// with subsequent silent call
         /// </summary>
         [Test]
-        [Ignore("UI is different in AppCenter compared w/local.")]
-        public void B2CGoogleMicrosoftAuthorityAcquireTokenTest()
+        [Ignore("Google Auth does not support embedded webview from b2clogin.com authority. " +
+            "App Center cannot run system browser tests yet, so this test can only be run in " +
+            "system browser locally.")]
+        public void B2CGoogleMicrosoftLoginAcquireTokenTest()
         {
             _mobileTestHelper.B2CGoogleAcquireTokenSilentTest(
                 _xamarinController, 

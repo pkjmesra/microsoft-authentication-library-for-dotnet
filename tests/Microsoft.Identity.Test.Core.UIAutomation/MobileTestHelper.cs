@@ -74,8 +74,6 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             AcquireTokenInteractiveHelper(controller, labResponse, CoreUiTestConstants.UiBehaviorLogin);
             VerifyResult(controller);
 
-            //acquire token for 2nd resource with refresh token
-            // SetInputData(controller, labResponse.AppId, CoreUiTestConstants.DefaultScope, CoreUiTestConstants.UiBehaviorLogin);
             controller.Tap(CoreUiTestConstants.SelectUser, XamarinSelector.ByAutomationId);
             controller.Tap(labResponse.User.Upn);
             controller.Tap(CoreUiTestConstants.AcquireTokenSilentButtonId);
@@ -105,6 +103,7 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
         private void PrepareForAuthentication(ITestController controller)
         {
             controller.Tap(_cachePageId);
+            controller.WaitForXamlElement(CoreUiTestConstants.ClearCacheId);
             controller.Tap(CoreUiTestConstants.ClearCacheId);
             controller.Tap(_settingsPageId);
             controller.Tap(CoreUiTestConstants.ClearAllCacheId);
@@ -210,6 +209,7 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             
             controller.Tap(_acquirePageId);
 
+            controller.WaitForXamlElement(CoreUiTestConstants.ROPCUsernameId);
             controller.Tap(CoreUiTestConstants.ROPCUsernameId, XamarinSelector.ByAutomationId);
             controller.EnterText(CoreUiTestConstants.ROPCUsernameId, labResponse.User.Upn, XamarinSelector.ByAutomationId);
             controller.Tap(CoreUiTestConstants.ROPCPasswordId, XamarinSelector.ByAutomationId);

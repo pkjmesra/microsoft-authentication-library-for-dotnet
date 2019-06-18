@@ -70,15 +70,13 @@ namespace Microsoft.Identity.Test.UIAutomation
                 AcquireTokenADFSV2019InteractiveNonFederatedTest,
 
                 B2CLocalAccountAcquireTokenTest,
-                B2CROPCLocalAccountAcquireTokenTest
-                // Google Auth does not support embedded webview from b2clogin.com authority.
-                // App Center cannot run system browser tests yet, so this test can only be run in system browser locally.
-                //B2CGoogleB2CLoginAuthorityAcquireTokenTest,
+                B2CROPCLocalAccountAcquireTokenTest,
+               //B2CGoogleB2CLoginAcquireTokenTest,
 
-                // Ignored tests
-                //B2CGoogleMicrosoftAuthorityAcquireTokenTest,
-                //B2CFacebookMicrosoftAuthorityAcquireTokenTest,
-                //B2CFacebookB2CLoginAuthorityAcquireTokenTest,
+                //// Ignored tests
+                //B2CGoogleMicrosoftAcquireTokenTest,
+                //B2CFacebookMicrosoftLoginAcquireTokenTest,
+                //B2CFacebookB2CLoginAcquireTokenTest,
                 //B2CFacebookEditPolicyAcquireTokenTest
             };
 
@@ -142,10 +140,13 @@ namespace Microsoft.Identity.Test.UIAutomation
         /// with subsequent silent call
         /// </summary>
         [Test]
-        [Ignore("issue: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
-        public void B2CFacebookB2CLoginAuthorityAcquireTokenTest()
+        [Ignore("Facebook does not allow automated tests accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
+        public void B2CFacebookB2CLoginAcquireTokenTest()
         {
-            _mobileTestHelper.B2CFacebookAcquireTokenSilentTest(_xamarinController, LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult(), true);
+            _mobileTestHelper.B2CFacebookAcquireTokenSilentTest(
+                _xamarinController, 
+                LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult(), 
+                true);
         }
 
         /// <summary>
@@ -154,10 +155,14 @@ namespace Microsoft.Identity.Test.UIAutomation
         /// with subsequent silent call
         /// </summary>
         [Test]
-        [Ignore("issue: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
-        public void B2CFacebookMicrosoftAuthorityAcquireTokenTest()
+        [Ignore("Facebook does not allow automated tests accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
+        public void B2CFacebookMicrosoftLoginAcquireTokenTest()
         {
-            _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(_xamarinController, LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult().User, B2CIdentityProvider.Facebook, false);
+            _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(
+                _xamarinController, 
+                LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult().User, 
+                B2CIdentityProvider.Facebook, 
+                false);
             _mobileTestHelper.B2CSilentFlowHelper(_xamarinController);
         }
 
@@ -168,10 +173,14 @@ namespace Microsoft.Identity.Test.UIAutomation
         ///  UIBehavior none
         /// </summary>
         [Test]
-        [Ignore("issue: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
+        [Ignore("Facebook does not allow automated tests accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
         public void B2CFacebookEditPolicyAcquireTokenTest()
         {
-            _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(_xamarinController, LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult().User, B2CIdentityProvider.Facebook, true);
+            _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(
+                _xamarinController, 
+                LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult().User, 
+                B2CIdentityProvider.Facebook, 
+                true);
             _mobileTestHelper.B2CSilentFlowHelper(_xamarinController);
             _mobileTestHelper.B2CFacebookEditPolicyAcquireTokenInteractiveTestHelper(_xamarinController);
         }
@@ -181,13 +190,16 @@ namespace Microsoft.Identity.Test.UIAutomation
         /// b2clogin.com authority
         /// with subsequent silent call
         /// </summary>
+        [Test]
         [Ignore("Google Auth does not support embedded webview from b2clogin.com authority. " +
             "App Center cannot run system browser tests yet, so this test can only be run in " +
             "system browser locally.")]
-        [Test]
-        public void B2CGoogleB2CLoginAuthorityAcquireTokenTest()
+        public void B2CGoogleB2CLoginAcquireTokenTest()
         {
-            _mobileTestHelper.B2CGoogleAcquireTokenSilentTest(_xamarinController, LabUserHelper.GetB2CGoogleAccountAsync().GetAwaiter().GetResult(), true);
+            _mobileTestHelper.B2CGoogleAcquireTokenSilentTest(
+                _xamarinController, 
+                LabUserHelper.GetB2CGoogleAccountAsync().GetAwaiter().GetResult(), 
+                true);
         }
 
         /// <summary>
@@ -195,11 +207,16 @@ namespace Microsoft.Identity.Test.UIAutomation
         /// login.microsoftonline.com authority
         /// with subsequent silent call
         /// </summary>
-        [Ignore("UI is different in AppCenter compared w/local.")]
         [Test]
-        public void B2CGoogleMicrosoftAuthorityAcquireTokenTest()
+        [Ignore("Google Auth does not support embedded webview from b2clogin.com authority. " +
+            "App Center cannot run system browser tests yet, so this test can only be run in " +
+            "system browser locally.")]
+        public void B2CGoogleMicrosoftAcquireTokenTest()
         {
-            _mobileTestHelper.B2CGoogleAcquireTokenSilentTest(_xamarinController, LabUserHelper.GetB2CGoogleAccountAsync().GetAwaiter().GetResult(), false);
+            _mobileTestHelper.B2CGoogleAcquireTokenSilentTest(
+                _xamarinController, 
+                LabUserHelper.GetB2CGoogleAccountAsync().GetAwaiter().GetResult(), 
+                false);
         }
 
         /// <summary>
@@ -210,7 +227,10 @@ namespace Microsoft.Identity.Test.UIAutomation
         [Test]
         public void B2CLocalAccountAcquireTokenTest()
         {
-            _mobileTestHelper.B2CLocalAccountAcquireTokenSilentTest(_xamarinController, LabUserHelper.GetB2CLocalAccountAsync().GetAwaiter().GetResult(), true);
+            _mobileTestHelper.B2CLocalAccountAcquireTokenSilentTest(
+                _xamarinController, 
+                LabUserHelper.GetB2CLocalAccountAsync().GetAwaiter().GetResult(), 
+                true);
         }
 
         /// <summary>
@@ -220,7 +240,9 @@ namespace Microsoft.Identity.Test.UIAutomation
         [Test]
         public void B2CROPCLocalAccountAcquireTokenTest()
         {
-            _mobileTestHelper.B2CAcquireTokenROPCTest(_xamarinController, LabUserHelper.GetB2CLocalAccountAsync().GetAwaiter().GetResult());
+            _mobileTestHelper.B2CAcquireTokenROPCTest(
+                _xamarinController, 
+                LabUserHelper.GetB2CLocalAccountAsync().GetAwaiter().GetResult());
         }
 
         /// <summary>
