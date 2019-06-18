@@ -209,7 +209,7 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             
             controller.Tap(_acquirePageId);
 
-            controller.WaitForXamlElement(CoreUiTestConstants.ROPCUsernameId);
+            //controller.WaitForXamlElement(CoreUiTestConstants.ROPCUsernameId);
             controller.Tap(CoreUiTestConstants.ROPCUsernameId, XamarinSelector.ByAutomationId);
             controller.EnterText(CoreUiTestConstants.ROPCUsernameId, labResponse.User.Upn, XamarinSelector.ByAutomationId);
             controller.Tap(CoreUiTestConstants.ROPCPasswordId, XamarinSelector.ByAutomationId);
@@ -288,13 +288,13 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
             controller.Tap(CoreUiTestConstants.AuthorityPickerId);
             controller.Tap(authority);
 #if iOS
-            controller.Tap("Done");
+            controller.Tap("Done");        
 #endif
 }
 
         public void PerformB2CLocalAccountSignInFlow(ITestController controller, LabUser user, UserInformationFieldIds userInformationFieldIds)
         {
-            controller.WaitForWebElementByCssId(CoreUiTestConstants.WebUpnB2CLocalInputId);
+            //controller.WaitForWebElementByCssId(CoreUiTestConstants.WebUpnB2CLocalInputId);
 
             controller.EnterText(CoreUiTestConstants.WebUpnB2CLocalInputId, 20, user.Upn, XamarinSelector.ByHtmlIdAttribute);
 

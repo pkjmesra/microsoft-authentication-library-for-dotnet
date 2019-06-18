@@ -57,17 +57,17 @@ namespace Microsoft.Identity.Test.UIAutomation
         {
             var tests = new List<Action>()
             {
-                AcquireTokenTest,
-                AcquireTokenSilentTest,
+                //AcquireTokenTest,
+                //AcquireTokenSilentTest,
 
-                PromptBehaviorConsentSelectAccount,
+                //PromptBehaviorConsentSelectAccount,
 
-                AcquireTokenADFSV3InteractiveFederatedTest,
-                AcquireTokenADFSV3InteractiveNonFederatedTest,
-                AcquireTokenADFSV4InteractiveFederatedTest,
-                AcquireTokenADFSV4InteractiveNonFederatedTest,
-                AcquireTokenADFSV2019InteractiveFederatedTest,
-                AcquireTokenADFSV2019InteractiveNonFederatedTest,
+                //AcquireTokenADFSV3InteractiveFederatedTest,
+                //AcquireTokenADFSV3InteractiveNonFederatedTest,
+                //AcquireTokenADFSV4InteractiveFederatedTest,
+                //AcquireTokenADFSV4InteractiveNonFederatedTest,
+                //AcquireTokenADFSV2019InteractiveFederatedTest,
+                //AcquireTokenADFSV2019InteractiveNonFederatedTest,
 
                 B2CLocalAccountAcquireTokenTest,
                 B2CROPCLocalAccountAcquireTokenTest,
