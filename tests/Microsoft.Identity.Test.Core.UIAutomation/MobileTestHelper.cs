@@ -293,7 +293,9 @@ namespace Microsoft.Identity.Test.UIAutomation.Infrastructure
 }
 
         public void PerformB2CLocalAccountSignInFlow(ITestController controller, LabUser user, UserInformationFieldIds userInformationFieldIds)
-        {  
+        {
+            controller.WaitForWebElementByCssId(CoreUiTestConstants.WebUpnB2CLocalInputId);
+
             controller.EnterText(CoreUiTestConstants.WebUpnB2CLocalInputId, 20, user.Upn, XamarinSelector.ByHtmlIdAttribute);
 
             controller.EnterText(userInformationFieldIds.GetPasswordInputId(true), user.GetOrFetchPassword(), XamarinSelector.ByHtmlIdAttribute);

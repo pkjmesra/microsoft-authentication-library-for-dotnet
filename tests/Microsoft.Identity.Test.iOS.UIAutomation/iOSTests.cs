@@ -8,7 +8,6 @@ using Xamarin.UITest;
 using System;
 using System.Text;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 //NOTICE! Inorder to run UI automation tests for xamarin locally, you may need to upgrade nunit to 3.0 and above for this project and the core ui Automation project.
 //It is set to 2.6.4 because that is the maximum version that appcenter can support.
@@ -59,12 +58,12 @@ namespace Test.Microsoft.Identity.UIAutomation
             {
                 AcquireTokenTest,
                 AcquireTokenSilentTest,
-                AcquireTokenADFSV3InteractiveFederatedTest,
-                AcquireTokenADFSV3InteractiveNonFederatedTest,
-                AcquireTokenADFSV4InteractiveFederatedTest,
-                AcquireTokenADFSV4InteractiveNonFederatedTest,
-                AcquireTokenADFSV2019InteractiveFederatedTest,
-                AcquireTokenADFSV2019InteractiveNonFederatedTest,
+                //AcquireTokenADFSV3InteractiveFederatedTest,
+                //AcquireTokenADFSV3InteractiveNonFederatedTest,
+                //AcquireTokenADFSV4InteractiveFederatedTest,
+                //AcquireTokenADFSV4InteractiveNonFederatedTest,
+                //AcquireTokenADFSV2019InteractiveFederatedTest,
+                //AcquireTokenADFSV2019InteractiveNonFederatedTest,
 
                 // Ignored tests
                 //B2CFacebookB2CLoginAcquireTokenTest,
@@ -142,7 +141,7 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// with subsequent silent call
         /// </summary>
         [Test]
-        [Ignore("Facebook does not allow automated tests accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
+        [Ignore("Facebook does not allow automated test accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
         public void B2CFacebookB2CLoginAcquireTokenTest()
         {
             _mobileTestHelper.B2CFacebookAcquireTokenSilentTest(
@@ -157,7 +156,7 @@ namespace Test.Microsoft.Identity.UIAutomation
         /// with subsequent silent call
         /// </summary>
         [Test]
-        [Ignore("Facebook does not allow automated tests accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
+        [Ignore("Facebook does not allow automated test accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
         public void B2CFacebookMicrosoftLoginAcquireTokenTest()
         {
             _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(
@@ -175,7 +174,7 @@ namespace Test.Microsoft.Identity.UIAutomation
         ///  UIBehavior none
         /// </summary>
         [Test]
-        [Ignore("Facebook does not allow automated tests accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
+        [Ignore("Facebook does not allow automated test accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
         public void B2CFacebookEditPolicyAcquireTokenTest()
         {
             _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(

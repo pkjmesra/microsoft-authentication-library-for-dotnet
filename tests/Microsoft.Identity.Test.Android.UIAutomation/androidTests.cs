@@ -71,9 +71,9 @@ namespace Microsoft.Identity.Test.UIAutomation
 
                 B2CLocalAccountAcquireTokenTest,
                 B2CROPCLocalAccountAcquireTokenTest,
-               //B2CGoogleB2CLoginAcquireTokenTest,
-
-                //// Ignored tests
+               
+                // Ignored tests
+                //B2CGoogleB2CLoginAcquireTokenTest,
                 //B2CGoogleMicrosoftAcquireTokenTest,
                 //B2CFacebookMicrosoftLoginAcquireTokenTest,
                 //B2CFacebookB2CLoginAcquireTokenTest,
@@ -140,7 +140,7 @@ namespace Microsoft.Identity.Test.UIAutomation
         /// with subsequent silent call
         /// </summary>
         [Test]
-        [Ignore("Facebook does not allow automated tests accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
+        [Ignore("Facebook does not allow automated test accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
         public void B2CFacebookB2CLoginAcquireTokenTest()
         {
             _mobileTestHelper.B2CFacebookAcquireTokenSilentTest(
@@ -155,7 +155,7 @@ namespace Microsoft.Identity.Test.UIAutomation
         /// with subsequent silent call
         /// </summary>
         [Test]
-        [Ignore("Facebook does not allow automated tests accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
+        [Ignore("Facebook does not allow automated test accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
         public void B2CFacebookMicrosoftLoginAcquireTokenTest()
         {
             _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(
@@ -173,7 +173,7 @@ namespace Microsoft.Identity.Test.UIAutomation
         ///  UIBehavior none
         /// </summary>
         [Test]
-        [Ignore("Facebook does not allow automated tests accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
+        [Ignore("Facebook does not allow automated test accounts. Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
         public void B2CFacebookEditPolicyAcquireTokenTest()
         {
             _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(
