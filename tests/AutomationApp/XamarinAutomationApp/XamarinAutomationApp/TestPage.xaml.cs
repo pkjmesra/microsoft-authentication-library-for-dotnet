@@ -17,7 +17,6 @@ namespace XamarinAutomationApp
     {
         private const string EmptyResult = "Result:";
         private const string SuccessfulResult = "Result: Success";
-        private static string s_currentUser = "";
         private bool _isB2CTest = false;
         public PublicClientApplication PublicClientApplication { get; set; }
 
@@ -199,12 +198,6 @@ namespace XamarinAutomationApp
                     request.ExecuteAsync().ConfigureAwait(true);
 
                 var resText = GetResultDescription(result);
-
-                if (resText.Contains("AccessToken"))
-                {
-                    s_currentUser = result.Account.Username;
-                    acquireResponseTitleLabel.Text = SuccessfulResult;
-                }
 
                 acquireResponseLabel.Text = resText;
             }
