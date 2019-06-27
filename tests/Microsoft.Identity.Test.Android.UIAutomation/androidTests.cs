@@ -166,12 +166,10 @@ namespace Microsoft.Identity.Test.UIAutomation
         public void B2CFacebookMicrosoftLoginAcquireTokenTest()
         {
             TestCommon.ResetInternalStaticCaches();
-            _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(
+            _mobileTestHelper.B2CFacebookAcquireTokenSilentTest(
                 _xamarinController,
-                LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult().User,
-                B2CIdentityProvider.Facebook,
+                LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult(),
                 false);
-            _mobileTestHelper.B2CSilentFlowHelper(_xamarinController);
         }
 
         /// <summary>
@@ -184,12 +182,10 @@ namespace Microsoft.Identity.Test.UIAutomation
         public void B2CFacebookEditPolicyAcquireTokenTest()
         {
             TestCommon.ResetInternalStaticCaches();
-            _mobileTestHelper.PerformB2CSelectProviderOnlyFlow(
+            _mobileTestHelper.B2CFacebookAcquireTokenSilentTest(
                 _xamarinController,
-                LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult().User,
-                B2CIdentityProvider.Facebook,
+                LabUserHelper.GetB2CFacebookAccountAsync().GetAwaiter().GetResult(),
                 true);
-            _mobileTestHelper.B2CSilentFlowHelper(_xamarinController);
             _mobileTestHelper.B2CFacebookEditPolicyAcquireTokenInteractiveTestHelper(_xamarinController);
         }
 
