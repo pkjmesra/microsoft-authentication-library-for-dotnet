@@ -64,16 +64,16 @@ namespace Test.Microsoft.Identity.UIAutomation
                 AcquireTokenADFSV4InteractiveNonFederatedTest,
                 AcquireTokenADFSV2019InteractiveFederatedTest,
                 AcquireTokenADFSV2019InteractiveNonFederatedTest,
-
                 AcquireTokenSilentTest,
-                B2CROPCLocalAccountAcquireTokenTest,
+
+                B2CROPCLocalAccountAcquireTokenTest,                
+                B2CFacebookB2CLoginAcquireTokenTest,
+                B2CFacebookMicrosoftLoginAcquireTokenTest,
+                B2CFacebookEditPolicyAcquireTokenTest,
                 // Ignored tests
-                //B2CFacebookB2CLoginAuthorityAcquireTokenTest,
-                //B2CFacebookMicrosoftAuthorityAcquireTokenTest,
                 //B2CGoogleB2CLoginAuthorityAcquireTokenTest,
                 //B2CGoogleMicrosoftAuthorityAcquireTokenTest,
-                //B2CLocalAccountAcquireTokenTest,
-                //B2CFacebookEditPolicyAcquireTokenTest,              
+                //B2CLocalAccountAcquireTokenTest,              
             };
 
             var hasFailed = false;

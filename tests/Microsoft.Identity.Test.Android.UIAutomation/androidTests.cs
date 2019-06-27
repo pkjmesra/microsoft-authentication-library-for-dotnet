@@ -72,13 +72,13 @@ namespace Microsoft.Identity.Test.UIAutomation
 
                 B2CLocalAccountAcquireTokenTest,
                 B2CROPCLocalAccountAcquireTokenTest,
+                B2CFacebookMicrosoftLoginAcquireTokenTest,
+                B2CFacebookB2CLoginAcquireTokenTest,
+                B2CFacebookEditPolicyAcquireTokenTest
                 
                 // Ignored tests
                 //B2CGoogleB2CLoginAuthorityAcquireTokenTest,
-                //B2CGoogleMicrosoftAuthorityAcquireTokenTest,
-                //B2CFacebookMicrosoftAuthorityAcquireTokenTest,
-                //B2CFacebookB2CLoginAuthorityAcquireTokenTest,
-                //B2CFacebookEditPolicyAcquireTokenTest
+                //B2CGoogleMicrosoftAuthorityAcquireTokenTest,                
             };
 
             var hasFailed = false;
@@ -148,8 +148,6 @@ namespace Microsoft.Identity.Test.UIAutomation
         /// with subsequent silent call
         /// </summary>
         [Test]
-        [Ignore("Facebook does not allow automated test accounts. " +
-            "Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
         public void B2CFacebookB2CLoginAcquireTokenTest()
         {
             TestCommon.ResetInternalStaticCaches();
@@ -165,8 +163,6 @@ namespace Microsoft.Identity.Test.UIAutomation
         /// with subsequent silent call
         /// </summary>
         [Test]
-        [Ignore("Facebook does not allow automated test accounts. " +
-            "Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
         public void B2CFacebookMicrosoftLoginAcquireTokenTest()
         {
             TestCommon.ResetInternalStaticCaches();
@@ -185,8 +181,6 @@ namespace Microsoft.Identity.Test.UIAutomation
         ///  UIBehavior none
         /// </summary>
         [Test]
-        [Ignore("Facebook does not allow automated test accounts. " +
-            "Tracking here: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/1026")]
         public void B2CFacebookEditPolicyAcquireTokenTest()
         {
             TestCommon.ResetInternalStaticCaches();
