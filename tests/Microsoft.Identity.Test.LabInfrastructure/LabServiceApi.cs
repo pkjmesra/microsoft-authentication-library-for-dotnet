@@ -143,7 +143,7 @@ namespace Microsoft.Identity.Test.LabInfrastructure
                 queryDict.Add(LabApiConstants.UserContains, query.UserSearch);
             }
 
-            return SendLabRequestAsync(queryRequiresBetaEndpoint ? LabApiConstants.BetaEndpoint : LabApiConstants.LabEndpoint, queryDict);
+            return SendLabRequestAsync(queryRequiresBetaEndpoint ? LabApiConstants.BetaEndpoint : LabApiConstants.NewLabEndpoint, queryDict);
         }
 
         private async Task<string> SendLabRequestAsync(string requestUrl, IDictionary<string, string> queryDict)
