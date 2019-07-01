@@ -46,7 +46,8 @@ namespace Microsoft.Identity.Test.Integration.SeleniumTests
         /// 1. Global sign-in: sign in from one app in the family, the other app can sign-in silently.
         /// 2. Global sign-out: sign out from one app in the family, the others app are automatically signed out.
         /// </summary>
-        /// <remarks></remarks>
+        /// <remarks>The FOCI flag does not appear in the U/P flow, an interactive flow is required. Interactive flow
+        /// cannot be automated because http://localhost cannot currently be added to the family apps</remarks>
         [TestMethod]
         public async Task FociSingInSignOutAsync()
         {
