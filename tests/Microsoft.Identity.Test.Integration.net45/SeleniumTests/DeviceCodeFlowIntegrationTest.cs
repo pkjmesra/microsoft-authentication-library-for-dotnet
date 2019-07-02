@@ -44,7 +44,7 @@ namespace Microsoft.Identity.Test.Integration.SeleniumTests
         #endregion
 
         [TestMethod]
-        [Timeout(1 * 60 * 1000)] // 1 min timeout
+        [Timeout(2 * 60 * 1000)] // 2 min timeout
         public async Task DeviceCodeFlowTestAsync()
         {
             LabResponse labResponse = await LabUserHelper.GetDefaultUserAsync().ConfigureAwait(false);
@@ -65,7 +65,7 @@ namespace Microsoft.Identity.Test.Integration.SeleniumTests
 
 		[TestMethod]
         [Ignore("Adfs does not currently support device code flow")]
-        [Timeout(1 * 60 * 1000)] // 1 min timeout
+        [Timeout(2 * 60 * 1000)] // 2 min timeout
         public async Task DeviceCodeFlowAdfsTestAsync()
         {
             UserQuery query = new UserQuery
